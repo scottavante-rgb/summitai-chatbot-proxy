@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'Moonshot/Kimi-K2-Instruct',
+        model: 'meta-llama/Llama-3.1-8B-Instruct-Turbo',
         messages: [
           { 
             role: 'system', 
