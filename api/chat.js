@@ -20,6 +20,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Message is required' });
     }
     
+    // Add timeout controller
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+    
     const response = await fetch('https://api.together.xyz/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -36,9 +40,12 @@ export default async function handler(req, res) {
           { role: 'user', content: message }
         ],
         temperature: 0.6,
-        max_tokens: 1000
-      })
+        max_tokens: 500
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`API request failed: ${response.status}`);
