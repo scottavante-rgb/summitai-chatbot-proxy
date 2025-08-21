@@ -1,0 +1,8 @@
+{
+  "name": "summitai-chatbot-proxy",
+  "version": "1.0.0",
+  "description": "API proxy for Summit AI chatbot powered by Kimi K2",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
